@@ -3,6 +3,7 @@
 import './bootstrap';
 import './menu';
 import './kembali';
+import './glitch-changer';
 
 // Import AOS
 import AOS from 'aos';
@@ -83,22 +84,4 @@ document.addEventListener('DOMContentLoaded', function() {
         academicButton.addEventListener('click', () => activateTab('academic'));
         nonAcademicButton.addEventListener('click', () => activateTab('non-academic'));
     }
-
-    // --- LOGIKA TOUCH FIX UNTUK HACKER BUTTON (Jika ingin digunakan di masa depan) ---
-    /*
-    const hackerContainer = document.querySelector('#lkti .hacker-container');
-    if (hackerContainer) {
-        hackerContainer.addEventListener('touchstart', function(e) {
-            const isTouched = hackerContainer.classList.contains('is-touched-hacker');
-            if (!isTouched) {
-                hackerContainer.classList.add('is-touched-hacker');
-                setTimeout(() => {
-                    hackerContainer.classList.remove('is-touched-hacker');
-                }, 4000); 
-            } else {
-                hackerContainer.classList.remove('is-touched-hacker');
-            }
-        });
-    }
-    */
 });

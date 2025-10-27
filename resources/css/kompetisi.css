@@ -1,0 +1,294 @@
+/* File: resources/css/hal2.css */
+
+@import 'tailwindcss';
+@import 'aos/dist/aos.css'; 
+
+/* Kustomisasi Body untuk Full Background (Kompetisi Page) */
+body {
+    /* PATH KOREKSI: Gunakan path untuk background halaman kompetisi */
+    background-image: url('/public/backgrounds/hal2.jpg'); 
+    background-size: cover;       
+    background-position: center;  
+    background-attachment: fixed; 
+    background-color: #0d1a2f;    
+    overflow-x: hidden; 
+}
+
+/* --- GLOBAL STYLES & FIXES --- */
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden; 
+}
+body {
+    overflow-x: hidden; 
+}
+
+/* FIX TEXT VISIBILITY di section transparan */
+#tentang-infinitec h2, 
+#lkti h2, #lkti p,
+#timeline h2,
+#syarat h2,
+#ml h2, #ml p,
+#contact h2 {
+    color: white; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); 
+}
+
+/* Penyesuaian untuk list checkmark */
+.check-list li {
+    @apply mb-2;
+    list-style: none;
+    padding-left: 1em;
+}
+.check-list li::before {
+    content: "✓";
+    color: #28a745; 
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* --- COMPETITION TAB BUTTONS (Sederhana) --- */
+
+.comp-tab-btn-new {
+    /* Base Button Style */
+    @apply w-40 p-2 h-12 bg-blue-900 text-white border-2 border-blue-900 rounded-md text-sm font-bold cursor-pointer relative z-10 hover:bg-yellow-400 hover:text-gray-800 hover:border-yellow-400;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Tailwind shadow-md */
+}
+
+/* Style untuk status ACTIVE */
+.comp-tab-btn-new.active-tab {
+    @apply bg-yellow-400 text-gray-800 border-yellow-400 shadow-xl scale-105;
+}
+
+
+
+/* --- ZIGZAG TIMELINE STYLES --- */
+
+.timeline-card-wrapper { @apply relative mb-16; }
+.timeline-card-wrapper::before {
+    content: ''; position: absolute; left: 50%; top: 0; width: 4px; height: 100%;
+    background-color: #3b82f6; transform: translateX(-50%); @apply hidden md:block;
+}
+.timeline-card {
+    @apply border-4 p-6 shadow-[8px_8px_0_0_#000] transition-all duration-500 ease-in-out;
+    border-color: #1e3a8a; background: linear-gradient(to bottom right, #f3f4f6, #e5e7eb, #d1d5db); 
+    box-shadow: 8px 8px 0 0 #1e3a8a;
+}
+.timeline-card:hover {
+    transform: scale(1.05); background: linear-gradient(to bottom right, #d1d5db, #e5e7eb, #f3f4f6); 
+    box-shadow: 12px 12px 0 0 #1e3a8a;
+}
+.timeline-badge { @apply border-2 px-3 py-1 font-bold text-white transition-all duration-500 ease-in-out shadow-md hover:scale-110; border-color: #1e3a8a; }
+.timeline-badge.blue { @apply bg-blue-600 hover:bg-blue-800; }
+.timeline-badge.yellow { @apply bg-yellow-500 hover:bg-yellow-600 text-gray-900; }
+.timeline-left { @apply md:w-[45%] md:ml-0; }
+.timeline-right { @apply md:w-[45%] md:ml-auto; }
+.timeline-card-wrapper > div.relative::before {
+    content: ''; position: absolute; width: 20px; height: 20px; background-color: #f59e0b;
+    border: 4px solid white; border-radius: 50%; top: 50%; transform: translateY(-50%); z-index: 10; @apply hidden md:block;
+}
+.timeline-left > div.relative::before { right: -25px; }
+.timeline-right > div.relative::before { left: -25px; }
+
+/* --- CUSTOM FADE-IN-UP ANIMATION (PENGGANTI AOS) --- */
+
+@keyframes fadeInMoveUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    /* Set durasi dan properti dasar */
+    animation: fadeInMoveUp 0.8s ease-out forwards;
+}
+
+/* Class ini digunakan untuk menyembunyikan card sebelum animasi dipicu */
+.card-initial-hidden {
+    opacity: 0;
+}
+
+
+/* CONTAINER untuk efek meteor */
+.meteor-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ANIMASI GARIS METEOR (Pseudo-elemen) */
+.meteor-container::before {
+    content: '';
+    position: absolute;
+    width: 2px; /* Lebar garis meteor */
+    height: 150px; /* Panjang meteor */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(156, 163, 175, 0.5)); /* Gradient abu-abu terang */
+    
+    /* Titik asal di luar layar kiri atas */
+    top: -50px; 
+    left: 50%;
+    
+    /* Atur titik asal rotasi di tengah bawah */
+    transform-origin: bottom center; 
+    
+    animation: shooting-stars 4s linear infinite; /* Durasi dan pengulangan */
+    opacity: 0;
+}
+
+/* Duplikasi efek dengan sedikit offset untuk kepadatan */
+.meteor-container::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7)); 
+    top: -50px; 
+    left: 20%;
+    transform-origin: bottom center; 
+    animation: shooting-stars 3s linear infinite 2s; /* Delay 2s */
+    opacity: 0;
+}
+
+/* KEYFRAMES: Animasi pergerakan meteor */
+@keyframes shooting-stars {
+    0% {
+        transform: rotate(220deg) translateY(0); /* Sudut awal */
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: rotate(220deg) translateY(120vh); /* Gerakkan ke bawah jauh */
+        opacity: 0;
+    }
+}
+
+
+/* ... dan sisa CSS kustom Anda (jika ada) ... */
+
+/* CONTAINER untuk efek meteor */
+.meteor-container2 {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ANIMASI GARIS METEOR (Pseudo-elemen) */
+.meteor-container2::before {
+    content: '';
+    position: absolute;
+    width: 2px; /* Lebar garis meteor */
+    height: 150px; /* Panjang meteor */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(156, 163, 175, 0.5)); /* Gradient abu-abu terang */
+    
+    /* Titik asal di luar layar kiri atas */
+    top: -50px; 
+    left: 30%;
+    
+    /* Atur titik asal rotasi di tengah bawah */
+    transform-origin: bottom center; 
+    
+    animation: shooting-stars2 2s linear infinite; /* Durasi dan pengulangan */
+    opacity: 0;
+}
+
+/* Duplikasi efek dengan sedikit offset untuk kepadatan */
+.meteor-container2::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7)); 
+    top: -50px; 
+    left: 40%;
+    transform-origin: bottom center; 
+    animation: shooting-stars2 3.5s linear infinite 2s; /* Delay 2s */
+    opacity: 0;
+}
+
+/* KEYFRAMES: Animasi pergerakan meteor */
+@keyframes shooting-stars2 {
+    0% {
+        transform: rotate(220deg) translateY(0); /* Sudut awal */
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: rotate(220deg) translateY(120vh); /* Gerakkan ke bawah jauh */
+        opacity: 0;
+    }
+}
+
+
+/* ... dan sisa CSS kustom Anda (jika ada) ... */
+
+/* CONTAINER untuk efek meteor */
+.meteor-container3 {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ANIMASI GARIS METEOR (Pseudo-elemen) */
+.meteor-container3::before {
+    content: '';
+    position: absolute;
+    width: 2px; /* Lebar garis meteor */
+    height: 150px; /* Panjang meteor */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(156, 163, 175, 0.5)); /* Gradient abu-abu terang */
+    
+    /* Titik asal di luar layar kiri atas */
+    top: -50px; 
+    left: 10%;
+    
+    /* Atur titik asal rotasi di tengah bawah */
+    transform-origin: bottom center; 
+    
+    animation: shooting-stars2 5s linear infinite; /* Durasi dan pengulangan */
+    opacity: 0;
+}
+
+/* Duplikasi efek dengan sedikit offset untuk kepadatan */
+.meteor-container3::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7)); 
+    top: -50px; 
+    left: 70%;
+    transform-origin: bottom center; 
+    animation: shooting-stars3 6s linear infinite 2s; /* Delay 2s */
+    opacity: 0;
+}
+
+/* KEYFRAMES: Animasi pergerakan meteor */
+@keyframes shooting-stars3 {
+    0% {
+        transform: rotate(220deg) translateY(0); /* Sudut awal */
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: rotate(220deg) translateY(120vh); /* Gerakkan ke bawah jauh */
+        opacity: 0;
+    }
+}
+

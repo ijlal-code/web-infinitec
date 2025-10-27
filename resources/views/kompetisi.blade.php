@@ -1,44 +1,19 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOMPETISI | INFINITEC 2025</title>
+<x-layouts.app title="KOMPETISI | INFINITEC 2025" css="hal2">
 
-    @vite('resources/css/hal2.css')
+    {{-- Menggunakan komponen Nav, set activePage=kompetisi dan link Daftar ke Google Form --}}
+  <x-slot name="nav">
+    <x-nav activePage="kompetisi" 
+           buttonText="DAFTAR" 
+           buttonLink="https://forms.gle/Y1DQ5zGcsuQ7BoDi9" />
+</x-slot>
 
-</head>
-<body class="font-sans text-gray-800 pt-12">
+<x-slot name="footer">
+    <x-footer />
+</x-slot>
 
-    <nav id="main-nav" class="bg-white shadow-md fixed top-0 w-full z-50 transition-all duration-300">
-        <div class="container w-11/12 max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-
-            <a href="/" class="text-blue-600 font-extrabold text-lg flex items-center">
-                INFINITEC
-            </a>
-
-            <div class="hidden md:flex space-x-6">
-                <a href="/" class="text-gray-700 hover:text-blue-600 font-medium transition">Home</a>
-                <a href="/kompetisi" class="text-blue-600 font-extrabold transition">Kompetisi</a>
-
-                <a href="https://forms.gle/Y1DQ5zGcsuQ7BoDi9" target="_blank" class="text-gray-800 bg-yellow-400 px-3 py-1 rounded hover:bg-yellow-500 font-semibold transition shadow-sm">
-                    DAFTAR
-                </a>
-            </div>
-
-            <button id="menu-button" class="md:hidden text-gray-700 focus:outline-none p-1 rounded hover:bg-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
-            <a href="/" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 transition">Home</a>
-            <a href="/kompetisi" class="block py-2 px-4 text-blue-600 font-extrabold transition">Kompetisi</a>
-            <a href="https://forms.gle/Y1DQ5zGcsuQ7BoDi9" target="_blank" class="block py-2 px-4 text-white bg-blue-600 hover:bg-blue-700 text-center font-semibold">DAFTAR SEKARANG</a>
-        </div>
-    </nav>
+<x-slot name="backToTop">
+    <x-back-to-top />
+</x-slot>
 
     <header class="text-white pt-10 pb-10 text-center" data-aos="fade-zoom-in" data-aos-easing="ease-in-sine" data-aos-duration="600">
         <div class="container w-11/12 max-w-6xl mx-auto py-5 px-4 pt-12 rounded-lg">
@@ -98,7 +73,7 @@
                     class="absolute blur duration-500 group-hover:blur-none w-36 h-36 rounded-full group-hover:translate-x-12 group-hover:-translate-y-12 bg-indigo-600 right-1 -top-12"
                 ></div>
                 <div
-                    class="absolute blur duration-500 group-hover:blur-none w-24 h-24 bg-sky-500 rounded-full group-hover:-translate-x-12"
+                    class="absolute blur duration-500 group-hover:blur-none w-24 h-24 bg-sky-700 rounded-full group-hover:-translate-x-12"
                 ></div>
 
                 <div class="z-10 flex flex-col justify-evenly w-full h-full text-left">
@@ -270,21 +245,25 @@
             </div> </div>
     </section>
 
-    <section id="tema" class="py-16">
-        <div class="container w-11/12 max-w-6xl mx-auto px-4">
-            <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Tema & Hadiah LKTI</h2>
-            <p class="text-center mb-8 text-white" data-aos="fade-up" data-aos-delay="100">Pilih salah satu dari subtema berikut untuk ide kreatifmu:</p>
+    {{-- resources/views/kompetisi.blade.php (Bagian yang diubah) --}}
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+{{-- Section TEMA & HADIAH LKTI --}}
+<section id="tema" class="py-16">
+    <div class="container w-11/12 max-w-6xl mx-auto px-4">
+        <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Tema & Hadiah LKTI</h2>
+        <p class="text-center mb-8 text-white" data-aos="fade-up" data-aos-delay="100">Pilih salah satu dari subtema berikut untuk ide kreatifmu:</p>
 
-                <div class="card bg-white p-5 rounded-lg shadow-md bg-opacity-90" data-aos="flip-left">
-                    <h4 class="text-blue-600 font-bold text-lg mb-4">Subtema Pilihan</h4>
-                    <ul class="check-list">
-                        <li>Aplikasi Digital</li>
-                        <li>Teknologi Usaha Lokal</li>
-                        <li>Teknologi Hijau</li>
-                        <li>Pertanian Modern</li>
-                        <li>Teknologi Kesehatan</li>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center">
+
+            {{-- Subtema Pilihan (Single Card) --}}
+            <div data-aos="flip-left" class="w-full">
+                <x-dark-glow-card title="Subtema Pilihan" subtitle="Pilih satu fokus" class="h-auto max-w-full">
+                    <ul class="check-list space-y-1">
+                        <li class="text-white">Aplikasi Digital</li>
+                        <li class="text-white">Teknologi Usaha Lokal</li>
+                        <li class="text-white">Teknologi Hijau</li>
+                        <li class="text-white">Pertanian Modern</li>
+                        <li class="text-white">Teknologi Kesehatan</li>
                     </ul>
                     <p class="text-center mt-6">
                         <a href="https://bit.ly/lkti-infinitec-2025" target="_blank"
@@ -292,54 +271,82 @@
                             Buku Panduan
                         </a>
                     </p>
-                </div>
+                </x-dark-glow-card>
+            </div>
 
-                <div class="card bg-white p-5 rounded-lg shadow-md lg:col-span-2 bg-opacity-90" data-aos="flip-right" data-aos-delay="200">
-                    <h4 class="text-green-600 font-bold text-lg mb-4">Biaya Pendaftaran & Hadiah</h4>
-                    <p>Biaya Pendaftaran: Rp50.000 / Tim</p>
-                    <p>Transfer ke:</p>
-                    <p class="font-bold text-xl my-2">Bank BRI: 0047 0107 2191 508</p>
-                    <p>(a.n. Puput Yunita)</p>
-                    <hr class="my-4">
-                    <p class="font-semibold mb-2">Hadiah Pemenang:</p>
-                    <ol class="list-decimal list-inside ml-4">
-                        <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
-                        <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
-                        <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
-                    </ol>
+            {{-- Biaya Pendaftaran & Hadiah (Larger Card - Diubah agar lebar penuh) --}}
+            <div class="lg:col-span-2 w-full" data-aos="flip-right" data-aos-delay="200">
+                <div class="card m-auto w-full hover:brightness-90 transition-all cursor-pointer group bg-gradient-to-tl from-gray-900 to-gray-950 hover:from-gray-800 hover:to-gray-950 border-r-2 border-t-2 border-gray-900 m-4 rounded-lg overflow-hidden relative">
+                    <div class="px-8 py-10 text-gray-400">
+                        <div class="bg-yellow-500 w-10 h-10 rounded-full rounded-tl-none mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-yellow-700 transition-all"></div>
+                        <div class="uppercase font-bold text-xl text-white">
+                            Biaya Pendaftaran & Hadiah
+                        </div>
+                        <div class="mt-8">
+                             <p>Biaya Pendaftaran: Rp50.000 / Tim</p>
+                            <p>Transfer ke:</p>
+                            <p class="font-bold text-xl my-2 text-yellow-400">Bank BRI: 0047 0107 2191 508</p>
+                            <p>(a.n. Puput Yunita)</p>
+                            <hr class="my-4 border-gray-700">
+                            <p class="font-semibold mb-2 text-white">Hadiah Pemenang:</p>
+                            <ol class="list-decimal list-inside ml-4 text-white">
+                                <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
+                                <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
+                                <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full bg-gradient-to-l via-yellow-500 group-hover:blur-xl blur-2xl m-auto rounded transition-all absolute bottom-0"></div>
+                    <div class="h-0.5 group-hover:w-full bg-gradient-to-l via-yellow-950 group-hover:via-yellow-500 w-[70%] m-auto rounded transition-all"></div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="syarat" class="py-16">
-        <div class="container w-11/12 max-w-6xl mx-auto px-4">
-            <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Ketentuan LKTI</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+{{-- Section KETENTUAN LKTI --}}
+<section id="syarat" class="py-16">
+    <div class="container w-11/12 max-w-6xl mx-auto px-4">
+        <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Ketentuan LKTI</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center">
 
-                <div class="card bg-white p-5 rounded-lg shadow-md lg:col-span-2 bg-opacity-90" data-aos="fade-right">
-                    <h4 class="text-blue-600 font-bold text-lg mb-4">Kriteria Peserta LKTI</h4>
-                    <ul class="check-list">
-                        <li>Peserta siswa aktif SMA/SMK/Sederajat (dibuktikan dengan Kartu Tanda Siswa/Kartu Sekolah).</li>
-                        <li>Setiap tim terdiri dari 2 orang, dengan 1 orang sebagai Ketua Tim dan 1 orang sebagai Anggota.</li>
-                        <li>Peserta harus berasal dari sekolah yang sama, namun boleh dari jurusan berbeda.</li>
-                        <li>Anggota tim dapat berasal dari kelas 10, 11, atau 12.</li>
-                    </ul>
-                </div>
-
-                <div class="card bg-white p-5 rounded-lg shadow-md bg-opacity-90" data-aos="fade-left" data-aos-delay="200">
-                    <h4 class="text-blue-600 font-bold text-lg mb-4">Berkas Wajib Upload LKTI</h4>
-                    <ul class="check-list">
-                        <li>Buku panduan yang sudah ditandatangani</li>
-                        <li>Scan Kartu Pelajar seluruh anggota</li>
-                        <li>Bukti publikasi (reborn & pamphlet dibagikan ke 3 grup + IG Story)</li>
-                        <li class="font-bold">File Fullpaper PDF</li>
-                        <li>Bukti Pembayaran (Rp50.000)</li>
-                    </ul>
+            {{-- Kriteria Peserta LKTI (Larger Card - Diubah agar lebar penuh) --}}
+            <div class="lg:col-span-2 w-full" data-aos="fade-right">
+                <div class="card m-auto w-full hover:brightness-90 transition-all cursor-pointer group bg-gradient-to-tl from-gray-900 to-gray-950 hover:from-gray-800 hover:to-gray-950 border-r-2 border-t-2 border-gray-900 m-4 rounded-lg overflow-hidden relative">
+                    <div class="px-8 py-10 text-gray-400">
+                        <div class="bg-yellow-500 w-10 h-10 rounded-full rounded-tl-none mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-yellow-700 transition-all"></div>
+                        <div class="uppercase font-bold text-xl text-white">
+                            Kriteria Peserta LKTI
+                        </div>
+                        <div class="mt-8">
+                             <ul class="check-list space-y-1">
+                                <li class="text-white">Peserta siswa aktif SMA/SMK/Sederajat (dibuktikan dengan Kartu Tanda Siswa/Kartu Sekolah).</li>
+                                <li class="text-white">Setiap tim terdiri dari 2 orang, dengan 1 orang sebagai Ketua Tim dan 1 orang sebagai Anggota.</li>
+                                <li class="text-white">Peserta harus berasal dari sekolah yang sama, namun boleh dari jurusan berbeda.</li>
+                                <li class="text-white">Anggota tim dapat berasal dari kelas 10, 11, atau 12.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full bg-gradient-to-l via-yellow-500 group-hover:blur-xl blur-2xl m-auto rounded transition-all absolute bottom-0"></div>
+                    <div class="h-0.5 group-hover:w-full bg-gradient-to-l via-yellow-950 group-hover:via-yellow-500 w-[70%] m-auto rounded transition-all"></div>
                 </div>
             </div>
+
+            {{-- Berkas Wajib Upload LKTI (Single Card) --}}
+            <div data-aos="fade-left" data-aos-delay="200" class="w-full">
+                <x-dark-glow-card title="Berkas Wajib Upload LKTI" subtitle="Dokumen yang harus disiapkan" class="h-auto max-w-full">
+                    <ul class="check-list space-y-1">
+                        <li class="text-white">Buku panduan yang sudah ditandatangani</li>
+                        <li class="text-white">Scan Kartu Pelajar seluruh anggota</li>
+                        <li class="text-white">Bukti publikasi (reborn & pamphlet dibagikan ke 3 grup + IG Story)</li>
+                        <li class="font-bold text-white">File Fullpaper PDF</li>
+                        <li class="text-white">Bukti Pembayaran (Rp50.000)</li>
+                    </ul>
+                </x-dark-glow-card>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
    <section id="contact" class="py-16">
@@ -360,7 +367,7 @@
                             <p>Nirwana: <strong class="text-white">0852-1621-4198</strong></p>
                             <hr class="my-2 border-gray-500">
                             <p class="text-yellow-400 font-bold underline mb-1">Mobile Legends</p>
-                            <p>[Nama Kontak ML]: <strong class="text-white">**[Nomor Kontak ML]**</strong></p>
+                            <p>[Nama Kontak ML]: <strong class="text-white">[Nomor Kontak ML]</strong></p>
                         </div>
                     </div>
                 </div>
@@ -373,21 +380,4 @@
         </div>
     </section>
 
-    <footer class="bg-white bg-opacity-95 text-gray-700 py-4">
-        <div class="container w-11/12 max-w-6xl mx-auto px-4 flex justify-center items-center">
-            <p class="text-sm opacity-90 text-center">
-                &copy; Copyright Informatics Study Club. All Rights Reserved
-            </p>
-        </div>
-    </footer>
-
-    <a href="#" id="back-to-top" class="fixed bottom-5 right-5 z-50 p-3 rounded-md bg-yellow-400 text-black shadow-xl transition-opacity duration-300 opacity-0 invisible hover:bg-blue-700" aria-label="Kembali ke atas">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-    </a>
-
-    @vite('resources/js/app.js')
-
-</body>
-</html>
+</x-layouts.app>

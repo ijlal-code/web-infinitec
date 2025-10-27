@@ -1,21 +1,16 @@
-// resources/js/menu-toggle.js
+// File: resources/js/menu.js (Revisi untuk Slide Down)
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const menuButton = document.getElementById('menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('#mobile-menu a');
 
     if (menuButton && mobileMenu) {
-        // 1. Toggle Menu functionality
-        menuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
+        menuButton.addEventListener('click', () => {
+            // Hapus kelas 'hidden' jika masih ada dari kode lama
+            mobileMenu.classList.remove('hidden');
 
-        // 2. Close mobile menu when a link is clicked
-        mobileLinks.forEach(item => {
-            item.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-            });
+            // Toggle kelas 'menu-open' yang mengontrol max-height untuk transisi
+            mobileMenu.classList.toggle('menu-open');
         });
     }
 });

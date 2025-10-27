@@ -2,7 +2,7 @@
 
 /* Kustomisasi Body untuk Full Background (Home Page) */
 body {
-    background-image: url('/public/backgrounds/home.jpg'); 
+    background-image: url('/public/backgrounds/hal2.jpg'); 
     background-size: cover;       
     background-position: center;  
     background-attachment: fixed; 
@@ -67,6 +67,355 @@ body {
     display: inline-block;
     width: 1em;
     margin-left: -1em;
+}
+
+/* ... dan sisa CSS kustom Anda (jika ada) ... */
+
+#mobile-menu {
+    /* Atur tinggi awal 0 dan overflow hidden agar konten tersembunyi */
+    max-height: 0;
+    overflow: hidden;
+    /* Tambahkan transisi halus untuk max-height */
+    transition: max-height 1s ease-in-out;
+}
+
+/* Kelas yang akan ditambahkan oleh JavaScript saat menu terbuka */
+#mobile-menu.menu-open {
+    /* Berikan nilai besar agar max-height dapat mentransisikan tinggi konten */
+    max-height: 500px; /* Nilai ini harus lebih besar dari tinggi maksimum menu */
+}
+
+/* ... dan sisa CSS kustom Anda (jika ada) ... */
+
+
+/* File: resources/css/app.css (TAMBAHAN DI BAWAH) */
+/* ... kode CSS yang ada di app.css ... */
+
+/* --- GLITCH CSS (Tambahan) --- */
+
+/* Gunakan kelas .glitch-text untuk mengganti komponen lama */
+/* File: resources/css/app.css (Bagian Glitch Styles) */
+
+.glitch-text-wrapper {
+    position: relative;
+    color: #fff;
+    /* Kelas default untuk MOBILE (font-size kecil, letter-spacing kecil) */
+    font-size: 25px; /* Default: Medium/Tablet */
+    letter-spacing: 3px; /* Kurangi spacing di mobile */
+    
+    /* GANTI @apply menjadi properti CSS murni untuk font-family */
+    font-family: 'Arial Black', Arial, sans-serif; 
+    @apply text-4xl; /* Hanya pertahankan kelas ukuran font Tailwind */
+}
+
+/* Base Glitch Style */
+.glitch-text-wrapper:before,
+.glitch-text-wrapper:after {
+    display: block;
+    content: attr(data-glitch);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+}
+
+.glitch-text-wrapper:before {
+    animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    color: #8b00ff;
+    z-index: -1;
+}
+
+.glitch-text-wrapper:after {
+    animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+    color: #00e571;
+    z-index: -2;
+}
+
+/* MEDIA QUERY: Perbaikan di layar MD (Tablet/Desktop) */
+@media (min-width: 768px) {
+    .glitch-text-wrapper {
+        /* Kembalikan ke ukuran desktop yang besar */
+        @apply text-6xl;
+        letter-spacing: 5px; /* Letter spacing normal di desktop */
+    }
+}
+
+/* ... Keyframes glitch dan shift di bawahnya tetap sama ... */
+
+/* Keyframes Glitch dan Shift dari Uiverse.io */
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 3px); }
+    40% { transform: translate(-3px, -3px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    to { transform: translate(0); }
+}
+
+@keyframes shift {
+    0%, 40%, 44%, 58%, 61%, 65%, 69%, 73%, 100% { transform: skewX(0deg); }
+    41% { transform: skewX(10deg); }
+    42% { transform: skewX(-10deg); }
+    59% { transform: skewX(40deg) skewY(10deg); }
+    60% { transform: skewX(-40deg) skewY(-10deg); }
+    63% { transform: skewX(10deg) skewY(-5deg); }
+    70% { transform: skewX(-50deg) skewY(-20deg); }
+    71% { transform: skewX(10deg) skewY(-10deg); }
+}
+
+
+/* ... dan sisa CSS kustom Anda (jika ada) ... */
+
+/* File: resources/css/app.css (Tambahan Animasi Meteor) */
+
+/* CONTAINER untuk efek meteor */
+.meteor-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ANIMASI GARIS METEOR (Pseudo-elemen) */
+.meteor-container::before {
+    content: '';
+    position: absolute;
+    width: 2px; /* Lebar garis meteor */
+    height: 150px; /* Panjang meteor */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(156, 163, 175, 0.5)); /* Gradient abu-abu terang */
+    
+    /* Titik asal di luar layar kiri atas */
+    top: -50px; 
+    left: 50%;
+    
+    /* Atur titik asal rotasi di tengah bawah */
+    transform-origin: bottom center; 
+    
+    animation: shooting-stars 4s linear infinite; /* Durasi dan pengulangan */
+    opacity: 0;
+}
+
+/* Duplikasi efek dengan sedikit offset untuk kepadatan */
+.meteor-container::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7)); 
+    top: -50px; 
+    left: 20%;
+    transform-origin: bottom center; 
+    animation: shooting-stars 3s linear infinite 2s; /* Delay 2s */
+    opacity: 0;
+}
+
+/* KEYFRAMES: Animasi pergerakan meteor */
+@keyframes shooting-stars {
+    0% {
+        transform: rotate(220deg) translateY(0); /* Sudut awal */
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: rotate(220deg) translateY(120vh); /* Gerakkan ke bawah jauh */
+        opacity: 0;
+    }
+}
+
+
+/* ... dan sisa CSS kustom Anda (jika ada) ... */
+
+/* CONTAINER untuk efek meteor */
+.meteor-container2 {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ANIMASI GARIS METEOR (Pseudo-elemen) */
+.meteor-container2::before {
+    content: '';
+    position: absolute;
+    width: 2px; /* Lebar garis meteor */
+    height: 150px; /* Panjang meteor */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(156, 163, 175, 0.5)); /* Gradient abu-abu terang */
+    
+    /* Titik asal di luar layar kiri atas */
+    top: -50px; 
+    left: 30%;
+    
+    /* Atur titik asal rotasi di tengah bawah */
+    transform-origin: bottom center; 
+    
+    animation: shooting-stars2 2s linear infinite; /* Durasi dan pengulangan */
+    opacity: 0;
+}
+
+/* Duplikasi efek dengan sedikit offset untuk kepadatan */
+.meteor-container2::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7)); 
+    top: -50px; 
+    left: 40%;
+    transform-origin: bottom center; 
+    animation: shooting-stars2 3.5s linear infinite 2s; /* Delay 2s */
+    opacity: 0;
+}
+
+/* KEYFRAMES: Animasi pergerakan meteor */
+@keyframes shooting-stars2 {
+    0% {
+        transform: rotate(220deg) translateY(0); /* Sudut awal */
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: rotate(220deg) translateY(120vh); /* Gerakkan ke bawah jauh */
+        opacity: 0;
+    }
+}
+
+
+/* ... dan sisa CSS kustom Anda (jika ada) ... */
+
+/* CONTAINER untuk efek meteor */
+.meteor-container3 {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ANIMASI GARIS METEOR (Pseudo-elemen) */
+.meteor-container3::before {
+    content: '';
+    position: absolute;
+    width: 2px; /* Lebar garis meteor */
+    height: 150px; /* Panjang meteor */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(156, 163, 175, 0.5)); /* Gradient abu-abu terang */
+    
+    /* Titik asal di luar layar kiri atas */
+    top: -50px; 
+    left: 10%;
+    
+    /* Atur titik asal rotasi di tengah bawah */
+    transform-origin: bottom center; 
+    
+    animation: shooting-stars2 5s linear infinite; /* Durasi dan pengulangan */
+    opacity: 0;
+}
+
+/* Duplikasi efek dengan sedikit offset untuk kepadatan */
+.meteor-container3::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7)); 
+    top: -50px; 
+    left: 70%;
+    transform-origin: bottom center; 
+    animation: shooting-stars3 6s linear infinite 2s; /* Delay 2s */
+    opacity: 0;
+}
+
+/* KEYFRAMES: Animasi pergerakan meteor */
+@keyframes shooting-stars3 {
+    0% {
+        transform: rotate(220deg) translateY(0); /* Sudut awal */
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: rotate(220deg) translateY(120vh); /* Gerakkan ke bawah jauh */
+        opacity: 0;
+    }
+}
+
+/* ... dan sisa CSS kustom Anda (jika ada) ... */
+
+/* --- 3D FLIP CARD STYLES (Dokumentasi Section) --- */
+.card-3d-flip { 
+  position: relative;
+  width: 300px;
+  height: 200px;
+  /* Menggunakan gambar background hal2.jpg */
+  background-image: url('/public/backgrounds/hal2.jpg');
+  background-size: cover; 
+  background-position: center; 
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  box-shadow: 0 0 0 5px #ffffff80;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-3d-flip:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.card__front-face {
+  backface-visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: rotateX(0deg);
+  transform-origin: bottom;
+}
+
+.card-3d-flip:hover .card__front-face {
+  transform: rotateX(0deg);
+}
+
+
+.card__content-3d {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  /* Menggunakan gambar background yang sama untuk kontinuitas flip */
+  background-image: url('/public/backgrounds/hal2.jpg');
+  background-size: cover; 
+  background-position: center; 
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-3d-flip:hover .card__content-3d {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 24px;
+  /* Teks diubah agar terlihat di atas gambar latar belakang */
+  color: white; 
+  font-weight: 700;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.card__description {
+  margin: 10px 0 0;
+  font-size: 14px;
+  /* Teks diubah agar terlihat di atas gambar latar belakang */
+  color: #ddd; 
+  line-height: 1.4;
 }
 
 /* ... dan sisa CSS kustom Anda (jika ada) ... */

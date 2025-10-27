@@ -11,3 +11,4 @@ Route::get('/', function () {
 Route::get('/kompetisi', function () {
     return view('kompetisi'); // Memanggil kompetisi.blade.php
 });
+
