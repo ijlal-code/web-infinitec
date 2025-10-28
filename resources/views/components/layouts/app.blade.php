@@ -7,8 +7,8 @@
     <title>{{ $title ?? 'INFINITEC' }}</title>
     
     {{-- CSS disesuaikan: Jika $css='hal2' (dari kompetisi.blade.php) maka load hal2.css. Jika tidak, load app.css (untuk home.blade.php) --}}
-    @if(isset($css) && $css == 'kompetisi')
-        @vite('resources/css/Kompetisi.css')
+    @if(isset($css) && $css == 'hal2')
+        @vite('resources/css/hal2.css')
     @else
         @vite('resources/css/app.css')
     @endif

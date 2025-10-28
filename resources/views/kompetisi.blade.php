@@ -34,9 +34,9 @@
 
             <div class="flex justify-center space-x-6 mb-12" data-aos="fade-up">
     {{-- Tombol Academic Baru --}}
-    <button id="tab-academic" class="comp-tab-btn-new transition-all active-tab">
-        ACADEMIC
-    </button>
+    <button id="tab-academic" class="comp-tab-btn-new transition-all">
+ACADEMIC
+</button>
 
     {{-- Tombol Non-Academic Baru --}}
     <button id="tab-non-academic" class="comp-tab-btn-new transition-all">
@@ -56,7 +56,7 @@
     </div>
 
     {{-- Tab Detail Academic BARU (Uiverse Card - LKTI) --}}
-    <div id="academic-detail-tab" class="hidden w-full flex justify-center card-initial-hidden">
+    <div id="academic-detail-tab" class=" w-full flex justify-center card-initial-hidden">
         <a href="#timeline" class="w-full max-w-md">
             <div
                 class="w-full h-80 duration-500 group overflow-hidden relative rounded bg-blue-900 text-neutral-50 p-6 flex flex-col justify-evenly shadow-2xl mx-auto"
@@ -92,7 +92,7 @@
     </div>
 
     {{-- Tab Detail Non-Academic BARU (Uiverse Card - Mobile Legends) --}}
-    <div id="non-academic-detail-tab" class="hidden w-full flex justify-center card-initial-hidden">
+    <div id="non-academic-detail-tab" class=" w-full flex justify-center card-initial-hidden">
         <a href="#contact" class="w-full max-w-md">
             <div
                 class="w-full h-80 duration-500 group overflow-hidden relative rounded bg-red-800 text-neutral-50 p-6 flex flex-col justify-evenly shadow-2xl mx-auto"
