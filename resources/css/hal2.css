@@ -292,3 +292,16 @@ body {
     }
 }
 
+#mobile-menu {
+    /* Atur tinggi awal 0 dan overflow hidden agar konten tersembunyi */
+    max-height: 0;
+    overflow: hidden;
+    /* Tambahkan transisi halus untuk max-height */
+    transition: max-height 1s ease-in-out;
+}
+
+/* Kelas yang akan ditambahkan oleh JavaScript saat menu terbuka */
+#mobile-menu.menu-open {
+    /* Berikan nilai besar agar max-height dapat mentransisikan tinggi konten */
+    max-height: 500px; /* Nilai ini harus lebih besar dari tinggi maksimum menu */
+}

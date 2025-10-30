@@ -65,6 +65,13 @@ document.addEventListener('DOMContentLoaded', function() {
         once: true,
     });
 
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+        // Ini MENGATASI masalah menu yang sudah terbuka di halaman Kompetisi.
+        // Memastikan ia tertutup (max-height: 0) di awal.
+        mobileMenu.classList.remove('menu-open'); 
+    }
+
     // Atur state awal kartu detail
     const academicDetail = document.getElementById('academic-detail-tab');
     const nonAcademicDetail = document.getElementById('non-academic-detail-tab');
