@@ -21,7 +21,7 @@
             <h2 class="text-xl md:text-2xl mt-0" data-aos="fade-up" data-aos-delay="300">Bidang Akademik & Non-Akademik</h2>
             <p class="italic text-lg" data-aos="fade-up" data-aos-delay="400">Pilih tantanganmu, raih prestasimu!</p>
 
-            <a href="#lkti"
+            <a href="#lomba-details-wrapper"
                class="inline-block bg-yellow-400 text-gray-800 py-4 px-8 font-bold rounded mt-5 transition hover:bg-yellow-500 shadow-lg" data-aos="zoom-in" data-aos-delay="700">
                 LIHAT DETAIL
             </a>
@@ -57,7 +57,8 @@ ACADEMIC
 
     {{-- Tab Detail Academic BARU (Uiverse Card - LKTI) --}}
     <div id="academic-detail-tab" class=" w-full flex justify-center card-initial-hidden">
-        <a href="#timeline" class="w-full max-w-md">
+        {{-- Ganti A tag dengan DIV --}}
+        <div class="w-full max-w-md"> 
             <div
                 class="w-full h-80 duration-500 group overflow-hidden relative rounded bg-blue-900 text-neutral-50 p-6 flex flex-col justify-evenly shadow-2xl mx-auto"
 
@@ -81,19 +82,22 @@ ACADEMIC
                     <p class="text-blue-200 text-base">
                         Lomba Karya Tulis Ilmiah (LKTI) mengundang siswa untuk menyajikan solusi kreatif berbasis teknologi dan riset.
                     </p>
+                    {{-- Ganti button link dengan button ID untuk JS --}}
                     <button
+                        id="show-lkti-details"
                         class="hover:bg-neutral-200 bg-yellow-400 rounded text-blue-900 font-extrabold w-full p-3 transition duration-300 shadow-md"
                     >
-                        Lihat Jadwal & Ketentuan
+                        Lihat Ketentuan & Syarat
                     </button>
                 </div>
             </div>
-        </a>
+        </div>
     </div>
 
     {{-- Tab Detail Non-Academic BARU (Uiverse Card - Mobile Legends) --}}
     <div id="non-academic-detail-tab" class=" w-full flex justify-center card-initial-hidden">
-        <a href="#contact" class="w-full max-w-md">
+        {{-- Ganti A tag dengan DIV --}}
+        <div class="w-full max-w-md">
             <div
                 class="w-full h-80 duration-500 group overflow-hidden relative rounded bg-red-800 text-neutral-50 p-6 flex flex-col justify-evenly shadow-2xl mx-auto"
                
@@ -114,239 +118,356 @@ ACADEMIC
 
                 <div class="z-10 flex flex-col justify-evenly w-full h-full text-left">
                     <span class="text-2xl font-black uppercase text-yellow-400">Mobile Legends</span>
+
+                    {{-- START: Tambahkan Gambar Logo di sini --}}
+    <img 
+        src="{{ asset('logo/logo-ml.png') }}" 
+        alt="Logo Mobile Legends Turnamen" 
+        class="h-20 object-contain mx-auto my-2"
+    />
+    {{-- END: Tambahkan Gambar Logo --}}
+
+
                     <p class="text-yellow-400 text-base font-bold">
-                        COMING SOON! Ajang kompetisi E-Sport Mobile Legends akan segera dibuka. Siapkan tim terbaikmu!
+                        Ajang kompetisi E-Sport Mobile Legends. Terbuka untuk Umum.
                     </p>
+                    {{-- Ganti button link dengan button ID untuk JS --}}
                     <button
+                        id="show-ml-details"
                         class="hover:bg-neutral-200 bg-neutral-50 rounded text-red-800 font-extrabold w-full p-3 transition duration-300 shadow-md"
                     >
-                        Nantikan Detail
+                        Lihat Ketentuan & Syarat
                     </button>
                 </div>
             </div>
-        </a>
+        </div>
     </div>
 </div>
 
     </section>
 
+    {{-- WRAPPER UNTUK KONTEN DETAIL LOMBA YANG BERUBAH --}}
+<div id="lomba-details-wrapper">
 
-    <section id="timeline" class="py-16">
-        <div class="container w-11/12 max-w-6xl mx-auto px-4">
-            <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Jadwal Penting LKTI</h2>
+    {{-- 1. LKTI DETAILS (Content Asli) --}}
+    <div id="lkti-details" class="lomba-details-content">
+        
+        {{-- Section: Jadwal Penting LKTI (Original) --}}
+        <section id="timeline" class="py-16">
+            <div class="container w-11/12 max-w-6xl mx-auto px-4">
+                <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Jadwal Penting LKTI</h2>
 
-            <div class="timeline-card-wrapper max-w-4xl mx-auto">
+                <div class="timeline-card-wrapper max-w-4xl mx-auto">
 
-                <div class="relative timeline-left" data-aos="fade-right" data-aos-delay="100">
-                    <article class="timeline-card mb-12">
-                        <div class="mb-2 flex items-center gap-x-2 text-xs">
-                            <time class="timeline-badge yellow" datetime="2025-10-18">
-                                18 Okt - 30 Nov 2025
-                            </time>
-                            <a class="timeline-badge blue" href="#syarat">
-                                Pendaftaran
-                            </a>
-                        </div>
-                        <h3 class="group relative">
-                            <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
-                                Pendaftaran & Pengumpulan Fullpaper
-                            </span>
-                        </h3>
-                        <p class="text-sm mt-3 leading-6 text-gray-700">
-                            Waktu pengumpulan karya tulis ilmiah (fullpaper) dan kelengkapan berkas wajib.
-                        </p>
-                    </article>
-                </div>
-
-                <div class="relative timeline-right" data-aos="fade-left" data-aos-delay="200">
-                    <article class="timeline-card mb-12">
-                         <div class="mb-2 flex items-center gap-x-2 text-xs">
-                            <time class="timeline-badge yellow" datetime="2025-12-01">
-                                1 - 10 Desember 2025
-                            </time>
-                            <a class="timeline-badge blue" href="#">
-                                Penilaian
-                            </a>
-                        </div>
-                        <h3 class="group relative">
-                            <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
-                                Penilaian Karya oleh Dewan Juri
-                            </span>
-                        </h3>
-                        <p class="text-sm mt-3 leading-6 text-gray-700">
-                            Proses seleksi ketat untuk menentukan finalis yang berhak maju ke tahap presentasi.
-                        </p>
-                    </article>
-                </div>
-
-                <div class="relative timeline-left" data-aos="fade-right" data-aos-delay="300">
-                    <article class="timeline-card mb-12">
-                        <div class="mb-2 flex items-center gap-x-2 text-xs">
-                            <time class="timeline-badge yellow" datetime="2025-12-11">
-                                11 & 13 Desember 2025
-                            </time>
-                            <a class="timeline-badge blue" href="#">
-                                Finalis
-                            </a>
-                        </div>
-                        <h3 class="group relative">
-                            <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
-                                Pengumuman Finalis & Technical Meeting
-                            </span>
-                        </h3>
-                        <p class="text-sm mt-3 leading-6 text-gray-700">
-                            Finalis akan diumumkan, diikuti Technical Meeting untuk persiapan presentasi.
-                        </p>
-                    </article>
-                </div>
-
-                <div class="relative timeline-right" data-aos="fade-left" data-aos-delay="400">
-                    <article class="timeline-card mb-12">
-                         <div class="mb-2 flex items-center gap-x-2 text-xs">
-                            <time class="timeline-badge yellow" datetime="2025-12-14">
-                                14 - 17 Desember 2025
-                            </time>
-                            <a class="timeline-badge blue" href="#">
-                                Presentasi
-                            </a>
-                        </div>
-                        <h3 class="group relative">
-                            <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
-                                Pengumpulan PPT & Presentasi Final
-                            </span>
-                        </h3>
-                        <p class="text-sm mt-3 leading-6 text-gray-700">
-                            Finalis mempresentasikan karya di hadapan dewan juri.
-                        </p>
-                    </article>
-                </div>
-
-                <div class="relative timeline-left" data-aos="fade-right" data-aos-delay="500">
-                    <article class="timeline-card mb-12">
-                        <div class="mb-2 flex items-center gap-x-2 text-xs">
-                            <time class="timeline-badge yellow" datetime="2025-12-18">
-                                18 Desember 2025
-                            </time>
-                            <a class="timeline-badge blue" href="#">
-                                Pengumuman
-                            </a>
-                        </div>
-                        <h3 class="group relative">
-                            <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
-                                Pengumuman Pemenang
-                            </span>
-                        </h3>
-                        <p class="text-sm mt-3 leading-6 text-gray-700">
-                            Puncak acara: Pengumuman juara dan penyerahan hadiah.
-                        </p>
-                    </article>
-                </div>
-
-            </div> </div>
-    </section>
-
-    {{-- resources/views/kompetisi.blade.php (Bagian yang diubah) --}}
-
-{{-- Section TEMA & HADIAH LKTI --}}
-<section id="tema" class="py-16">
-    <div class="container w-11/12 max-w-6xl mx-auto px-4">
-        <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Tema & Hadiah LKTI</h2>
-        <p class="text-center mb-8 text-white" data-aos="fade-up" data-aos-delay="100">Pilih salah satu dari subtema berikut untuk ide kreatifmu:</p>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center">
-
-            {{-- Subtema Pilihan (Single Card) --}}
-            <div data-aos="flip-left" class="w-full">
-                <x-dark-glow-card title="Subtema Pilihan" subtitle="Pilih satu fokus" class="h-auto max-w-full">
-                    <ul class="check-list space-y-1">
-                        <li class="text-white">Aplikasi Digital</li>
-                        <li class="text-white">Teknologi Usaha Lokal</li>
-                        <li class="text-white">Teknologi Hijau</li>
-                        <li class="text-white">Pertanian Modern</li>
-                        <li class="text-white">Teknologi Kesehatan</li>
-                    </ul>
-                    <p class="text-center mt-6">
-                        <a href="https://bit.ly/lkti-infinitec-2025" target="_blank"
-                           class="inline-block bg-blue-600 text-white py-2 px-5 font-bold rounded transition hover:bg-blue-700">
-                            Buku Panduan
-                        </a>
-                    </p>
-                </x-dark-glow-card>
-            </div>
-
-            {{-- Biaya Pendaftaran & Hadiah (Larger Card - Diubah agar lebar penuh) --}}
-            <div class="lg:col-span-2 w-full" data-aos="flip-right" data-aos-delay="200">
-                <div class="card m-auto w-full hover:brightness-90 transition-all cursor-pointer group bg-gradient-to-tl from-gray-900 to-gray-950 hover:from-gray-800 hover:to-gray-950 border-r-2 border-t-2 border-gray-900 m-4 rounded-lg overflow-hidden relative">
-                    <div class="px-8 py-10 text-gray-400">
-                        <div class="bg-yellow-500 w-10 h-10 rounded-full rounded-tl-none mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-yellow-700 transition-all"></div>
-                        <div class="uppercase font-bold text-xl text-white">
-                            Biaya Pendaftaran & Hadiah
-                        </div>
-                        <div class="mt-8">
-                             <p>Biaya Pendaftaran: Rp50.000 / Tim</p>
-                            <p>Transfer ke:</p>
-                            <p class="font-bold text-xl my-2 text-yellow-400">Bank BRI: 0047 0107 2191 508</p>
-                            <p>(a.n. Puput Yunita)</p>
-                            <hr class="my-4 border-gray-700">
-                            <p class="font-semibold mb-2 text-white">Hadiah Pemenang:</p>
-                            <ol class="list-decimal list-inside ml-4 text-white">
-                                <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
-                                <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
-                                <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
-                            </ol>
-                        </div>
+                    <div class="relative timeline-left" data-aos="fade-right" data-aos-delay="100">
+                        <article class="timeline-card mb-12">
+                            <div class="mb-2 flex items-center gap-x-2 text-xs">
+                                <time class="timeline-badge yellow" datetime="2025-10-18">
+                                    18 Okt - 30 Nov 2025
+                                </time>
+                                <a class="timeline-badge blue" href="#syarat">
+                                    Pendaftaran
+                                </a>
+                            </div>
+                            <h3 class="group relative">
+                                <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
+                                    Pendaftaran & Pengumpulan Fullpaper
+                                </span>
+                            </h3>
+                            <p class="text-sm mt-3 leading-6 text-gray-700">
+                                Waktu pengumpulan karya tulis ilmiah (fullpaper) dan kelengkapan berkas wajib.
+                            </p>
+                        </article>
                     </div>
-                    <div class="h-2 w-full bg-gradient-to-l via-yellow-500 group-hover:blur-xl blur-2xl m-auto rounded transition-all absolute bottom-0"></div>
-                    <div class="h-0.5 group-hover:w-full bg-gradient-to-l via-yellow-950 group-hover:via-yellow-500 w-[70%] m-auto rounded transition-all"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-{{-- Section KETENTUAN LKTI --}}
-<section id="syarat" class="py-16">
-    <div class="container w-11/12 max-w-6xl mx-auto px-4">
-        <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Ketentuan LKTI</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center">
+                    <div class="relative timeline-right" data-aos="fade-left" data-aos-delay="200">
+                        <article class="timeline-card mb-12">
+                             <div class="mb-2 flex items-center gap-x-2 text-xs">
+                                <time class="timeline-badge yellow" datetime="2025-12-01">
+                                    1 - 10 Desember 2025
+                                </time>
+                                <a class="timeline-badge blue" href="#">
+                                    Penilaian
+                                </a>
+                            </div>
+                            <h3 class="group relative">
+                                <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
+                                    Penilaian Karya oleh Dewan Juri
+                                </span>
+                            </h3>
+                            <p class="text-sm mt-3 leading-6 text-gray-700">
+                                Proses seleksi ketat untuk menentukan finalis yang berhak maju ke tahap presentasi.
+                            </p>
+                        </article>
+                    </div>
 
-            {{-- Kriteria Peserta LKTI (Larger Card - Diubah agar lebar penuh) --}}
-            <div class="lg:col-span-2 w-full" data-aos="fade-right">
-                <div class="card m-auto w-full hover:brightness-90 transition-all cursor-pointer group bg-gradient-to-tl from-gray-900 to-gray-950 hover:from-gray-800 hover:to-gray-950 border-r-2 border-t-2 border-gray-900 m-4 rounded-lg overflow-hidden relative">
-                    <div class="px-8 py-10 text-gray-400">
-                        <div class="bg-yellow-500 w-10 h-10 rounded-full rounded-tl-none mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-yellow-700 transition-all"></div>
-                        <div class="uppercase font-bold text-xl text-white">
-                            Kriteria Peserta LKTI
-                        </div>
-                        <div class="mt-8">
-                             <ul class="check-list space-y-1">
-                                <li class="text-white">Peserta siswa aktif SMA/SMK/Sederajat (dibuktikan dengan Kartu Tanda Siswa/Kartu Sekolah).</li>
-                                <li class="text-white">Setiap tim terdiri dari 2 orang, dengan 1 orang sebagai Ketua Tim dan 1 orang sebagai Anggota.</li>
-                                <li class="text-white">Peserta harus berasal dari sekolah yang sama, namun boleh dari jurusan berbeda.</li>
-                                <li class="text-white">Anggota tim dapat berasal dari kelas 10, 11, atau 12.</li>
+                    <div class="relative timeline-left" data-aos="fade-right" data-aos-delay="300">
+                        <article class="timeline-card mb-12">
+                            <div class="mb-2 flex items-center gap-x-2 text-xs">
+                                <time class="timeline-badge yellow" datetime="2025-12-11">
+                                    11 & 13 Desember 2025
+                                </time>
+                                <a class="timeline-badge blue" href="#">
+                                    Finalis
+                                </a>
+                            </div>
+                            <h3 class="group relative">
+                                <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
+                                    Pengumuman Finalis & Technical Meeting
+                                </span>
+                            </h3>
+                            <p class="text-sm mt-3 leading-6 text-gray-700">
+                                Finalis akan diumumkan, diikuti Technical Meeting untuk persiapan presentasi.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="relative timeline-right" data-aos="fade-left" data-aos-delay="400">
+                        <article class="timeline-card mb-12">
+                             <div class="mb-2 flex items-center gap-x-2 text-xs">
+                                <time class="timeline-badge yellow" datetime="2025-12-14">
+                                    14 - 17 Desember 2025
+                                </time>
+                                <a class="timeline-badge blue" href="#">
+                                    Presentasi
+                                </a>
+                            </div>
+                            <h3 class="group relative">
+                                <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
+                                    Pengumpulan PPT & Presentasi Final
+                                </span>
+                            </h3>
+                            <p class="text-sm mt-3 leading-6 text-gray-700">
+                                Finalis mempresentasikan karya di hadapan dewan juri.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="relative timeline-left" data-aos="fade-right" data-aos-delay="500">
+                        <article class="timeline-card mb-12">
+                            <div class="mb-2 flex items-center gap-x-2 text-xs">
+                                <time class="timeline-badge yellow" datetime="2025-12-18">
+                                    18 Desember 2025
+                                </time>
+                                <a class="timeline-badge blue" href="#">
+                                    Pengumuman
+                                </a>
+                            </div>
+                            <h3 class="group relative">
+                                <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
+                                    Pengumuman Pemenang
+                                </span>
+                            </h3>
+                            <p class="text-sm mt-3 leading-6 text-gray-700">
+                                Puncak acara: Pengumuman juara dan penyerahan hadiah.
+                            </p>
+                        </article>
+                    </div>
+
+                </div> </div>
+        </section>
+
+        {{-- Section TEMA & HADIAH LKTI (Original) --}}
+        <section id="tema" class="py-16">
+            <div class="container w-11/12 max-w-6xl mx-auto px-4">
+                <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Tema & Hadiah LKTI</h2>
+                <p class="text-center mb-8 text-white" data-aos="fade-up" data-aos-delay="100">Pilih salah satu dari subtema berikut untuk ide kreatifmu:</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center">
+
+                    {{-- Subtema Pilihan (Single Card) --}}
+                    <div data-aos="flip-left" class="w-full">
+                        <x-dark-glow-card title="Subtema Pilihan" subtitle="Pilih satu fokus" class="h-auto max-w-full">
+                            <ul class="check-list space-y-1">
+                                <li class="text-white">Aplikasi Digital</li>
+                                <li class="text-white">Teknologi Usaha Lokal</li>
+                                <li class="text-white">Teknologi Hijau</li>
+                                <li class="text-white">Pertanian Modern</li>
+                                <li class="text-white">Teknologi Kesehatan</li>
                             </ul>
+                            <p class="text-center mt-6">
+                                <a href="https://bit.ly/lkti-infinitec-2025" target="_blank"
+                                   class="inline-block bg-blue-600 text-white py-2 px-5 font-bold rounded transition hover:bg-blue-700">
+                                    Buku Panduan
+                                </a>
+                            </p>
+                        </x-dark-glow-card>
+                    </div>
+
+                    {{-- Biaya Pendaftaran & Hadiah (Larger Card - Diubah agar lebar penuh) --}}
+                    <div class="lg:col-span-2 w-full" data-aos="flip-right" data-aos-delay="200">
+                        <div class="card m-auto w-full hover:brightness-90 transition-all cursor-pointer group bg-gradient-to-tl from-gray-900 to-gray-950 hover:from-gray-800 hover:to-gray-950 border-r-2 border-t-2 border-gray-900 m-4 rounded-lg overflow-hidden relative">
+                            <div class="px-8 py-10 text-gray-400">
+                                <div class="bg-yellow-500 w-10 h-10 rounded-full rounded-tl-none mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-yellow-700 transition-all"></div>
+                                <div class="uppercase font-bold text-xl text-white">
+                                    Biaya Pendaftaran & Hadiah
+                                </div>
+                                <div class="mt-8">
+                                     <p>Biaya Pendaftaran: Rp50.000 / Tim</p>
+                                    <p>Transfer ke:</p>
+                                    <p class="font-bold text-xl my-2 text-yellow-400">Bank BRI: 0047 0107 2191 508</p>
+                                    <p>(a.n. Puput Yunita)</p>
+                                    <hr class="my-4 border-gray-700">
+                                    <p class="font-semibold mb-2 text-white">Hadiah Pemenang:</p>
+                                    <ol class="list-decimal list-inside ml-4 text-white">
+                                        <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
+                                        <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
+                                        <li class="mb-1">Uang Pembinaan + Trofi + Sertifikat</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="h-2 w-full bg-gradient-to-l via-yellow-500 group-hover:blur-xl blur-2xl m-auto rounded transition-all absolute bottom-0"></div>
+                            <div class="h-0.5 group-hover:w-full bg-gradient-to-l via-yellow-950 group-hover:via-yellow-500 w-[70%] m-auto rounded transition-all"></div>
                         </div>
                     </div>
-                    <div class="h-2 w-full bg-gradient-to-l via-yellow-500 group-hover:blur-xl blur-2xl m-auto rounded transition-all absolute bottom-0"></div>
-                    <div class="h-0.5 group-hover:w-full bg-gradient-to-l via-yellow-950 group-hover:via-yellow-500 w-[70%] m-auto rounded transition-all"></div>
                 </div>
             </div>
+        </section>
 
-            {{-- Berkas Wajib Upload LKTI (Single Card) --}}
-            <div data-aos="fade-left" data-aos-delay="200" class="w-full">
-                <x-dark-glow-card title="Berkas Wajib Upload LKTI" subtitle="Dokumen yang harus disiapkan" class="h-auto max-w-full">
-                    <ul class="check-list space-y-1">
-                        <li class="text-white">Buku panduan yang sudah ditandatangani</li>
-                        <li class="text-white">Scan Kartu Pelajar seluruh anggota</li>
-                        <li class="text-white">Bukti publikasi (reborn & pamphlet dibagikan ke 3 grup + IG Story)</li>
-                        <li class="font-bold text-white">File Fullpaper PDF</li>
-                        <li class="text-white">Bukti Pembayaran (Rp50.000)</li>
-                    </ul>
-                </x-dark-glow-card>
+        {{-- Section KETENTUAN LKTI (Original) --}}
+        <section id="syarat" class="py-16">
+            <div class="container w-11/12 max-w-6xl mx-auto px-4">
+                <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Ketentuan LKTI</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center">
+
+                    {{-- Kriteria Peserta LKTI (Larger Card - Diubah agar lebar penuh) --}}
+                    <div class="lg:col-span-2 w-full" data-aos="fade-right">
+                        <div class="card m-auto w-full hover:brightness-90 transition-all cursor-pointer group bg-gradient-to-tl from-gray-900 to-gray-950 hover:from-gray-800 hover:to-gray-950 border-r-2 border-t-2 border-gray-900 m-4 rounded-lg overflow-hidden relative">
+                            <div class="px-8 py-10 text-gray-400">
+                                <div class="bg-yellow-500 w-10 h-10 rounded-full rounded-tl-none mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-yellow-700 transition-all"></div>
+                                <div class="uppercase font-bold text-xl text-white">
+                                    Kriteria Peserta LKTI
+                                </div>
+                                <div class="mt-8">
+                                     <ul class="check-list space-y-1">
+                                        <li class="text-white">Peserta siswa aktif SMA/SMK/Sederajat (dibuktikan dengan Kartu Tanda Siswa/Kartu Sekolah).</li>
+                                        <li class="text-white">Setiap tim terdiri dari 2 orang, dengan 1 orang sebagai Ketua Tim dan 1 orang sebagai Anggota.</li>
+                                        <li class="text-white">Peserta harus berasal dari sekolah yang sama, namun boleh dari jurusan berbeda.</li>
+                                        <li class="text-white">Anggota tim dapat berasal dari kelas 10, 11, atau 12.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="h-2 w-full bg-gradient-to-l via-yellow-500 group-hover:blur-xl blur-2xl m-auto rounded transition-all absolute bottom-0"></div>
+                            <div class="h-0.5 group-hover:w-full bg-gradient-to-l via-yellow-950 group-hover:via-yellow-500 w-[70%] m-auto rounded transition-all"></div>
+                        </div>
+                    </div>
+
+                    {{-- Berkas Wajib Upload LKTI (Single Card) --}}
+                    <div data-aos="fade-left" data-aos-delay="200" class="w-full">
+                        <x-dark-glow-card title="Berkas Wajib Upload LKTI" subtitle="Dokumen yang harus disiapkan" class="h-auto max-w-full">
+                            <ul class="check-list space-y-1">
+                                <li class="text-white">Buku panduan yang sudah ditandatangani</li>
+                                <li class="text-white">Scan Kartu Pelajar seluruh anggota</li>
+                                <li class="text-white">Bukti publikasi (reborn & pamphlet dibagikan ke 3 grup + IG Story)</li>
+                                <li class="font-bold text-white">File Fullpaper PDF</li>
+                                <li class="text-white">Bukti Pembayaran (Rp50.000)</li>
+                            </ul>
+                        </x-dark-glow-card>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+        
     </div>
-</section>
+    {{-- AKHIR LKTI DETAILS --}}
+
+    {{-- 2. MLBB (MOBILE LEGENDS) DETAILS (Konten Baru, tersembunyi secara default) --}}
+    <div id="ml-details" class="lomba-details-content hidden">
+
+        <section id="ml-jadwal" class="py-16">
+            <div class="container w-11/12 max-w-6xl mx-auto px-4">
+                <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Jadwal Turnamen E-Sports Championship</h2>
+
+                <div class="timeline-card-wrapper max-w-4xl mx-auto">
+                    <div class="relative timeline-left" data-aos="fade-right" data-aos-delay="100">
+                        <article class="timeline-card mb-12">
+                            <div class="mb-2 flex items-center gap-x-2 text-xs">
+                                <time class="timeline-badge yellow" datetime="2025-11-01">1 - 23 November 2025</time>
+                                <a class="timeline-badge blue" href="#ml-syarat">Pendaftaran</a>
+                            </div>
+                            <h3 class="group relative">
+                                <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
+                                    Registrasi Tim
+                                </span>
+                            </h3>
+                            <p class="text-sm mt-3 leading-6 text-gray-700">
+                                Waktu pendaftaran untuk turnamen Mobile Legends. Terbuka untuk Umum.
+                            </p>
+                        </article>
+                    </div>
+                    <div class="relative timeline-right" data-aos="fade-left" data-aos-delay="200">
+                        <article class="timeline-card mb-12">
+                             <div class="mb-2 flex items-center gap-x-2 text-xs">
+                                <time class="timeline-badge yellow" datetime="2025-11-29">29 - 30 November 2025</time>
+                                <a class="timeline-badge blue" href="#">Pelaksanaan</a>
+                            </div>
+                            <h3 class="group relative">
+                                <span class="group-hover:text-blue-800 text-lg font-black uppercase leading-6 text-gray-900 transition-all duration-500 ease-in-out">
+                                    Pelaksanaan Turnamen
+                                </span>
+                            </h3>
+                            <p class="text-sm mt-3 leading-6 text-gray-700">
+                                **Penyisihan: Online**. **16 Besar - Final: cafe moespace** (Belakang pasar oleh oleh).
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="ml-hadiah" class="py-16">
+            <div class="container w-11/12 max-w-6xl mx-auto px-4">
+                <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Hadiah & Detail Turnamen MLBB</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center">
+                    
+                    {{-- Detail Turnamen --}}
+                    <div data-aos="flip-left" class="w-full">
+                        <x-dark-glow-card title="Detail Turnamen" subtitle="Informatics E-Sports Championship" class="h-auto max-w-full">
+                            <ul class="check-list space-y-1">
+                                <li class="text-white">Total Hadiah (Pollprize): **Rp1.200.000**</li>
+                                <li class="text-white">Slot Tersedia: **32 Tim**</li>
+                                <li class="text-white">Biaya Registrasi: **Rp50.000 / Tim**</li>
+                                <li class="text-white">Turnamen ini **Terbuka untuk Umum**</li>
+                            </ul>
+                        </x-dark-glow-card>
+                    </div>
+
+                    {{-- Syarat & Narahubung (Larger Card) --}}
+                    <div class="lg:col-span-2 w-full" data-aos="flip-right" data-aos-delay="200">
+                        <div class="card m-auto w-full hover:brightness-90 transition-all cursor-pointer group bg-gradient-to-tl from-gray-900 to-gray-950 hover:from-gray-800 hover:to-gray-950 border-r-2 border-t-2 border-gray-900 m-4 rounded-lg overflow-hidden relative">
+                            <div class="px-8 py-10 text-gray-400">
+                                <div class="bg-yellow-500 w-10 h-10 rounded-full rounded-tl-none mb-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-yellow-700 transition-all"></div>
+                                <div class="uppercase font-bold text-xl text-white">
+                                    Syarat & Narahubung
+                                </div>
+                                <div class="mt-8">
+                                    <p class="font-bold text-lg mb-2 text-yellow-400">Syarat dan Ketentuan:</p>
+                                    <ol class="list-decimal list-inside ml-4 text-white">
+                                        <li class="mb-1">No Toxic</li>
+                                        <li class="mb-1">Tidak boleh Rusuh</li>
+                                        <li class="mb-1">No cheat</li>
+                                    </ol>
+                                    <hr class="my-4 border-gray-700">
+                                    <p class="font-bold mb-2 text-yellow-400">Narahubung Pendaftaran:</p>
+                                    <ul class="check-list space-y-1 text-white">
+                                        <li>Rahmadi: **+62 821-9072-8175**</li>
+                                        <li>Nazwa: **+62 823-2362-2522**</li>
+                                        <li>Ita: **+62 823-4010-1987**</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="h-2 w-full bg-gradient-to-l via-yellow-500 group-hover:blur-xl blur-2xl m-auto rounded transition-all absolute bottom-0"></div>
+                            <div class="h-0.5 group-hover:w-full bg-gradient-to-l via-yellow-950 group-hover:via-yellow-500 w-[70%] m-auto rounded transition-all"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    {{-- AKHIR MLBB DETAILS --}}
+</div>
+{{-- AKHIR WRAPPER LOMBA DETAILS --}}
 
 
    <section id="contact" class="py-16">
@@ -367,7 +488,10 @@ ACADEMIC
                             <p>Nirwana: <strong class="text-white">0852-1621-4198</strong></p>
                             <hr class="my-2 border-gray-500">
                             <p class="text-yellow-400 font-bold underline mb-1">Mobile Legends</p>
-                            <p>[Nama Kontak ML]: <strong class="text-white">[Nomor Kontak ML]</strong></p>
+                            {{-- Update kontak ML di bagian bawah sesuai data baru --}}
+                            <p>Rahmadi: <strong class="text-white">+62 821-9072-8175</strong></p>
+                            <p>Nazwa: <strong class="text-white">+62 823-2362-2522</strong></p>
+                            <p>Ita: <strong class="text-white">+62 823-4010-1987</strong></p>
                         </div>
                     </div>
                 </div>

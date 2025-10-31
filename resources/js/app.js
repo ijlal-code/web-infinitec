@@ -8,7 +8,7 @@ import './glitch-changer';
 // Import AOS
 import AOS from 'aos';
 
-// --- FUNGSI AKTIVASI TAB (PENGGANTI AOS) ---
+// --- FUNGSI AKTIVASI TAB (PREVIEW CARD) ---
 function activateTab(type) {
     const academicButton = document.getElementById('tab-academic');
     const nonAcademicButton = document.getElementById('tab-non-academic');
@@ -23,8 +23,8 @@ function activateTab(type) {
     nonAcademicButton.classList.remove('active-tab');
     
     // Sembunyikan semua detail & hapus animasi (agar bisa dipicu lagi)
-    academicDetail.classList.add('hidden');
-    nonAcademicDetail.classList.add('hidden');
+    academicDetail.classList.add('hidden', 'card-initial-hidden');
+    nonAcademicDetail.classList.add('hidden', 'card-initial-hidden');
     genericCard.classList.add('hidden');
     
     // Hapus class animasi kustom dari kedua tab
@@ -57,6 +57,35 @@ function activateTab(type) {
     }
 }
 
+// --- FUNGSI TAMPILKAN DETAIL LOMBA UTAMA ---
+function showCompetitionDetails(type) {
+    const lktiDetails = document.getElementById('lkti-details');
+    const mlDetails = document.getElementById('ml-details');
+    const detailsWrapper = document.getElementById('lomba-details-wrapper');
+    
+    // 1. Hide all main content blocks
+    if (lktiDetails) lktiDetails.classList.add('hidden');
+    if (mlDetails) mlDetails.classList.add('hidden');
+
+    // 2. Show selected content block
+    if (type === 'lkti' && lktiDetails) {
+        lktiDetails.classList.remove('hidden');
+    } else if (type === 'ml' && mlDetails) {
+        mlDetails.classList.remove('hidden');
+    }
+
+    // 3. Scroll smoothly to the details section
+    if (detailsWrapper) {
+        // Menggunakan window.scrollTo jika elemen terlalu tinggi
+        const offset = detailsWrapper.offsetTop - 100; // Offset 100px dari atas agar tidak tertutup nav
+        window.scrollTo({
+            top: offset, 
+            behavior: 'smooth'
+        });
+    }
+}
+
+
 // --- INISIALISASI UTAMA ---
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -71,6 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Memastikan ia tertutup (max-height: 0) di awal.
         mobileMenu.classList.remove('menu-open'); 
     }
+
+    // Sembunyikan semua detail di awal (kecuali default LKTI)
+    const lktiDetails = document.getElementById('lkti-details');
+    const mlDetails = document.getElementById('ml-details');
+    if (lktiDetails) lktiDetails.classList.remove('hidden'); 
+    if (mlDetails) mlDetails.classList.add('hidden');
 
     // Atur state awal kartu detail
     const academicDetail = document.getElementById('academic-detail-tab');
@@ -87,8 +122,26 @@ document.addEventListener('DOMContentLoaded', function() {
         // Atur state awal: Tampilkan Generic Card saat halaman pertama kali dimuat
         activateTab('none'); 
 
-        // Hubungkan event listener ke tombol
+        // Hubungkan event listener ke tombol tab atas
         academicButton.addEventListener('click', () => activateTab('academic'));
         nonAcademicButton.addEventListener('click', () => activateTab('non-academic'));
+        
+        // Hubungkan event listener ke tombol "Lihat Ketentuan & Syarat" di dalam card
+        const showLktiBtn = document.getElementById('show-lkti-details');
+        const showMlBtn = document.getElementById('show-ml-details');
+
+        if (showLktiBtn) {
+            showLktiBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showCompetitionDetails('lkti');
+            });
+        }
+        
+        if (showMlBtn) {
+            showMlBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showCompetitionDetails('ml');
+            });
+        }
     }
 });
