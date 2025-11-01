@@ -306,4 +306,10 @@ body {
     max-height: 500px; /* Nilai ini harus lebih besar dari tinggi maksimum menu */
 }
 
-
+/* --- CUSTOM MODAL STYLES (Tambahan untuk Blur) --- */
+.modal-backdrop-blur {
+    /* Mengganti hitam solid dengan semi-transparan dan blur */
+    background-color: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Dukungan Safari */
+}

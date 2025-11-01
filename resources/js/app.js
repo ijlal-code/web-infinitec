@@ -144,4 +144,87 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // --- START: Logika Modal QR Code (Dinamis) ---
+    const shareModal = document.getElementById('share-modal');
+    // Ambil semua tombol share
+    const openModalBtnLKTI = document.getElementById('open-share-modal-lkti');
+    const openModalBtnML = document.getElementById('open-share-modal-ml');
+    
+    const closeModalBtn = document.getElementById('close-share-modal');
+    const copyLinkBtn = document.getElementById('copy-link-btn');
+    const copyMessageEl = document.getElementById('copy-message');
+    // Ambil elemen dinamis di modal
+    const modalCompNameEl = document.getElementById('modal-comp-name');
+    const modalDescCompNameEl = document.getElementById('modal-desc-comp-name');
+    const modalQrImageEl = document.getElementById('modal-qr-image'); // <-- Ambil elemen gambar
+
+    // Fungsi untuk setup dan membuka modal
+    function setupModal(button) {
+        // Cek semua elemen penting, termasuk elemen gambar
+        if (!shareModal || !copyLinkBtn || !modalCompNameEl || !modalDescCompNameEl || !modalQrImageEl) return; 
+
+        const link = button.dataset.link;
+        const competitionName = button.dataset.competition;
+        const qrSrc = button.dataset.qrSrc; // <-- Ambil sumber QR dari tombol
+        
+        // 1. Update Modal Content
+        copyLinkBtn.dataset.link = link;
+        modalCompNameEl.textContent = competitionName;
+        // Penyesuaian teks deskripsi
+        modalDescCompNameEl.textContent = competitionName === 'LKTI' ? 'Lomba Karya Tulis Ilmiah' : competitionName + ' Championship';
+        
+        modalQrImageEl.src = qrSrc; // <-- SET SUMBER GAMBAR QR
+
+        // 2. Buka Modal
+        shareModal.classList.remove('hidden', 'opacity-0');
+        shareModal.classList.add('opacity-100');
+    }
+
+
+    if (closeModalBtn && copyLinkBtn) {
+        // Attach listener for LKTI button
+        if (openModalBtnLKTI) {
+            openModalBtnLKTI.addEventListener('click', () => setupModal(openModalBtnLKTI));
+        }
+
+        // Attach listener for MLBB button
+        if (openModalBtnML) {
+            openModalBtnML.addEventListener('click', () => setupModal(openModalBtnML));
+        }
+
+        // Tutup Modal
+        closeModalBtn.addEventListener('click', () => {
+            shareModal.classList.remove('opacity-100');
+            shareModal.classList.add('opacity-0');
+            setTimeout(() => {
+                shareModal.classList.add('hidden');
+                copyMessageEl.classList.add('hidden'); 
+            }, 300);
+        });
+
+        // Logika Salin Link
+        copyLinkBtn.addEventListener('click', () => {
+            const link = copyLinkBtn.dataset.link;
+            if (!link) return;
+            
+            navigator.clipboard.writeText(link).then(() => {
+                copyMessageEl.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessageEl.classList.add('hidden');
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin link: ', err);
+                alert('Gagal menyalin link. Silakan salin manual: ' + link);
+            });
+        });
+        
+        // Tambahkan fungsi untuk menutup modal jika klik di luar card
+        shareModal.addEventListener('click', (e) => {
+            if (e.target.id === 'share-modal') {
+                 closeModalBtn.click();
+            }
+        });
+    }
+    // --- END: Logika Modal QR Code (Dinamis) ---
 });

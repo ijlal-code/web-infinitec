@@ -2,8 +2,8 @@
 
     {{-- Menggunakan komponen Nav, set activePage=kompetisi dan link Daftar ke Google Form --}}
   <x-slot name="nav">
-    <x-nav activePage="kompetisi" 
-           buttonText="DAFTAR" 
+    <x-nav activePage="kompetisi"
+           buttonText="DAFTAR"
            buttonLink="https://forms.gle/Y1DQ5zGcsuQ7BoDi9" />
 </x-slot>
 
@@ -58,7 +58,7 @@ ACADEMIC
     {{-- Tab Detail Academic BARU (Uiverse Card - LKTI) --}}
     <div id="academic-detail-tab" class=" w-full flex justify-center card-initial-hidden">
         {{-- Ganti A tag dengan DIV --}}
-        <div class="w-full max-w-md"> 
+        <div class="w-full max-w-md">
             <div
                 class="w-full h-80 duration-500 group overflow-hidden relative rounded bg-blue-900 text-neutral-50 p-6 flex flex-col justify-evenly shadow-2xl mx-auto"
 
@@ -100,7 +100,7 @@ ACADEMIC
         <div class="w-full max-w-md">
             <div
                 class="w-full h-80 duration-500 group overflow-hidden relative rounded bg-red-800 text-neutral-50 p-6 flex flex-col justify-evenly shadow-2xl mx-auto"
-               
+
             >
                 {{-- Blur elements (Red/Orange/Pink theme) --}}
                 <div
@@ -120,9 +120,9 @@ ACADEMIC
                     <span class="text-2xl font-black uppercase text-yellow-400">Mobile Legends</span>
 
                     {{-- START: Tambahkan Gambar Logo di sini --}}
-    <img 
-        src="{{ asset('logo/logo-ml.png') }}" 
-        alt="Logo Mobile Legends Turnamen" 
+    <img
+        src="{{ asset('logo/logo-ml.png') }}"
+        alt="Logo Mobile Legends Turnamen"
         class="h-20 object-contain mx-auto my-2"
     />
     {{-- END: Tambahkan Gambar Logo --}}
@@ -151,7 +151,7 @@ ACADEMIC
 
     {{-- 1. LKTI DETAILS (Content Asli) --}}
     <div id="lkti-details" class="lomba-details-content">
-        
+
         {{-- Section: Jadwal Penting LKTI (Original) --}}
         <section id="timeline" class="py-16">
             <div class="container w-11/12 max-w-6xl mx-auto px-4">
@@ -177,6 +177,32 @@ ACADEMIC
                             <p class="text-sm mt-3 leading-6 text-gray-700">
                                 Waktu pengumpulan karya tulis ilmiah (fullpaper) dan kelengkapan berkas wajib.
                             </p>
+                            {{-- START: Tambahan Kode Dua Tombol Baru untuk LKTI --}}
+                            <div class="mt-2 flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-3">
+                                {{-- START: Tambahan Kode Dua Tombol Baru untuk LKTI --}}
+                            <div class="mt-4 flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-3">
+                                {{-- Tombol 1: Daftar Sekarang (Menggunakan Shimmer Button) --}}
+                                <x-shimmer-button
+                                    href="https://forms.gle/Y1DQ5zGcsuQ7BoDi9" {{-- Menggunakan link pendaftaran utama --}}
+                                    text="DAFTAR SEKARANG LKTI"
+                                    target="_blank"
+                                    class="w-full"
+                                />
+
+                                {{-- Tombol 2: Bagikan ke Teman (Tombol Biasa untuk memicu Modal) --}}
+                                <button
+                                  id="open-share-modal-lkti"
+                                  data-link="https://forms.gle/Y1DQ5zGcsuQ7BoDi9" {{-- Link pendaftaran LKTI --}}
+                                   data-competition="LKTI"
+                                   data-qr-src="{{ asset('qr/qr-ml.jpeg') }}" {{-- Tentukan gambar QR untuk LKTI di sini --}}
+                                   class="w-full relative inline-flex items-center justify-center overflow-hidden rounded-md bg-blue-600 backdrop-blur-lg px-6 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-blue-600/50 border border-white/20"
+                                      >
+                                       <span class="text-lg">
+                                      BAGIKAN KE TEMAN
+                                     </span>
+                                  </button>
+                            </div>
+                            {{-- END: Tambahan Kode Dua Tombol Baru untuk LKTI --}}
                         </article>
                     </div>
 
@@ -367,7 +393,7 @@ ACADEMIC
                 </div>
             </div>
         </section>
-        
+
     </div>
     {{-- AKHIR LKTI DETAILS --}}
 
@@ -393,6 +419,30 @@ ACADEMIC
                             <p class="text-sm mt-3 leading-6 text-gray-700">
                                 Waktu pendaftaran untuk turnamen Mobile Legends. Terbuka untuk Umum.
                             </p>
+                            {{-- START: Tambahan Kode Dua Tombol Baru --}}
+                            <div class="mt-4 flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-3">
+                                {{-- Tombol 1: Daftar Sekarang (Menggunakan Shimmer Button) --}}
+                                <x-shimmer-button
+                                    href="https://forms.gle/okvpMqu7xJUG7vy79"
+                                    text="DAFTAR SEKARANG"
+                                    target="_blank"
+                                    class="w-full"
+                                />
+
+                                {{-- Tombol 2: Bagikan ke Teman (Tombol Biasa untuk memicu Modal) --}}
+                               <button
+                id="open-share-modal-ml"
+                data-link="https://forms.gle/okvpMqu7xJUG7vy79"
+                data-competition="Mobile Legends"
+                data-qr-src="{{ asset('WhatsApp Image 2025-10-31 at 09.18.26.jpeg') }}" {{-- Tentukan gambar QR untuk MLBB di sini --}}
+                class="w-full relative inline-flex items-center justify-center overflow-hidden rounded-md bg-blue-600 backdrop-blur-lg px-6 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-blue-600/50 border border-white/20"
+            >
+                <span class="text-lg">
+                    BAGIKAN KE TEMAN
+                </span>
+            </button>
+                            </div>
+                            {{-- END: Tambahan Kode Dua Tombol Baru --}}
                         </article>
                     </div>
                     <div class="relative timeline-right" data-aos="fade-left" data-aos-delay="200">
@@ -407,19 +457,20 @@ ACADEMIC
                                 </span>
                             </h3>
                             <p class="text-sm mt-3 leading-6 text-gray-700">
-                                **Penyisihan: Online**. **16 Besar - Final: cafe moespace** (Belakang pasar oleh oleh).
+                                Penyisihan dilaksanakan secara Online.
+                                Saat 16 Besar - Final dilaksanakn pada cafe moespace (Belakang pasar oleh oleh).
                             </p>
                         </article>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="ml-hadiah" class="py-16">
             <div class="container w-11/12 max-w-6xl mx-auto px-4">
                 <h2 class="font-['Arial Black'] text-white text-center mb-10 text-2xl md:text-3xl" data-aos="fade-up">Hadiah & Detail Turnamen MLBB</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center">
-                    
+
                     {{-- Detail Turnamen --}}
                     <div data-aos="flip-left" class="w-full">
                         <x-dark-glow-card title="Detail Turnamen" subtitle="Informatics E-Sports Championship" class="h-auto max-w-full">
@@ -466,6 +517,34 @@ ACADEMIC
 
     </div>
     {{-- AKHIR MLBB DETAILS --}}
+    {{-- START: Modal QR Code untuk Berbagi (Dibuat Dinamis) --}}
+{{-- Menerapkan kelas CSS 'modal-backdrop-blur' untuk efek buram --}}
+<div id="share-modal" class="fixed inset-0 modal-backdrop-blur flex items-center justify-center z-[100] hidden transition-opacity duration-300 opacity-0">
+    <div class="bg-blue-900 border-4 border-yellow-400 rounded-xl p-8 max-w-sm w-full text-center shadow-2xl relative" data-aos="zoom-in">
+        <button id="close-share-modal" class="absolute top-3 right-3 text-white hover:text-yellow-400 text-2xl">&times;</button>
+        <h3 class="font-['Arial Black'] text-yellow-400 text-2xl mb-4">BAGIKAN LINK <span id="modal-comp-name">KOMPETISI</span></h3>
+        <p class="text-white mb-6">Scan QR Code di bawah atau salin link untuk mendaftar <span id="modal-desc-comp-name">kompetisi ini</span>.</p>
+        
+        {{-- QR CODE IMAGE (Diberi ID dan SRC dikosongkan, diisi oleh JS) --}}
+        <img 
+            id="modal-qr-image"
+            src="" 
+            alt="QR Code Pendaftaran" 
+            class="w-48 h-48 object-contain mx-auto border-4 border-white mb-6"
+        />
+        
+        {{-- Tombol Salin Link (data-link diisi oleh JS) --}}
+        <button
+            id="copy-link-btn"
+            data-link=""
+            class="bg-yellow-400 text-blue-900 py-3 px-6 rounded-md font-bold hover:bg-yellow-500 transition-all w-full"
+        >
+            SALIN LINK
+        </button>
+        <p id="copy-message" class="text-green-400 mt-2 hidden">Link berhasil disalin!</p>
+         </div>
+    </div>
+    {{-- END: Modal QR Code untuk Berbagi --}}
 </div>
 {{-- AKHIR WRAPPER LOMBA DETAILS --}}
 
@@ -475,7 +554,7 @@ ACADEMIC
 
             <h2 class="font-['Arial Black'] text-white mb-16 text-2xl md:text-3xl" data-aos="fade-up">CONTACT US</h2>
 
-            <div class="flex justify-center" data-aos="zoom-in" data-aos-delay="200">
+            <div class="flex justify-center" data-aos="fade-up" data-aos-delay="200">
                 <div class="group duration-500 hover:-skew-x-0 skew-x-6 hover:translate-x-2">
 
                     <div class="group-hover:duration-400 relative rounded-2xl w-72 h-auto bg-blue-800 text-gray-50 flex flex-col justify-center items-start p-6 before:-skew-x-12 before:rounded-2xl before:absolute before:content-[''] before:bg-blue-600 before:right-3 before:top-0 before:w-72 before:h-full before:-z-10">
