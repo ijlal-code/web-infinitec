@@ -9,6 +9,7 @@ import './glitch-changer';
 import AOS from 'aos';
 
 // --- FUNGSI AKTIVASI TAB (PREVIEW CARD) ---
+// ... (Kode fungsi activateTab tidak berubah) ...
 function activateTab(type) {
     const academicButton = document.getElementById('tab-academic');
     const nonAcademicButton = document.getElementById('tab-non-academic');
@@ -74,6 +75,14 @@ function showCompetitionDetails(type) {
         mlDetails.classList.remove('hidden');
     }
 
+    // START FIX: Tambahkan refresh AOS untuk memaksa perhitungan ulang posisi elemen
+    // Ini memperbaiki masalah di mana elemen di bagian bawah (seperti Contact Us) 
+    // tidak terdeteksi oleh AOS setelah konten yang panjang (LKTI/ML) disembunyikan/ditampilkan.
+    setTimeout(() => { 
+        AOS.refreshHard(); 
+    }, 100);
+    // END FIX
+
     // 3. Scroll smoothly to the details section
     if (detailsWrapper) {
         // Menggunakan window.scrollTo jika elemen terlalu tinggi
@@ -87,7 +96,7 @@ function showCompetitionDetails(type) {
 
 
 // --- INISIALISASI UTAMA ---
-
+// ... (Kode DOMContentLoaded tidak berubah) ...
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
         duration: 1000,
@@ -146,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- START: Logika Modal QR Code (Dinamis) ---
+    // ... (Kode Logika Modal QR Code tidak berubah) ...
     const shareModal = document.getElementById('share-modal');
     // Ambil semua tombol share
     const openModalBtnLKTI = document.getElementById('open-share-modal-lkti');

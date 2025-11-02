@@ -184,7 +184,7 @@ ACADEMIC
                                 {{-- Tombol 1: Daftar Sekarang (Menggunakan Shimmer Button) --}}
                                 <x-shimmer-button
                                     href="https://forms.gle/Y1DQ5zGcsuQ7BoDi9" {{-- Menggunakan link pendaftaran utama --}}
-                                    text="DAFTAR SEKARANG LKTI"
+                                    text="DAFTAR SEKARANG"
                                     target="_blank"
                                     class="w-full"
                                 />
@@ -434,7 +434,7 @@ ACADEMIC
                 id="open-share-modal-ml"
                 data-link="https://forms.gle/okvpMqu7xJUG7vy79"
                 data-competition="Mobile Legends"
-                data-qr-src="{{ asset('WhatsApp Image 2025-10-31 at 09.18.26.jpeg') }}" {{-- Tentukan gambar QR untuk MLBB di sini --}}
+                data-qr-src="{{ asset('qr/qr-ml.jpeg') }}" {{-- Tentukan gambar QR untuk MLBB di sini --}}
                 class="w-full relative inline-flex items-center justify-center overflow-hidden rounded-md bg-blue-600 backdrop-blur-lg px-6 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-blue-600/50 border border-white/20"
             >
                 <span class="text-lg">
