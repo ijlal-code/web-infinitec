@@ -6,7 +6,7 @@
 /* Kustomisasi Body untuk Full Background (Kompetisi Page) */
 body {
     /* PATH KOREKSI: Gunakan path untuk background halaman kompetisi */
-    background-image: url('/public/backgrounds/hal2.jpg'); 
+    background-image: url('/backgrounds/hal2.jpg'); 
     background-size: cover;       
     background-position: center;  
     background-attachment: fixed; 

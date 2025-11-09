@@ -8,8 +8,10 @@ import './glitch-changer';
 // Import AOS
 import AOS from 'aos';
 
+// --- VARIABEL GLOBAL UNTUK MELACAK KOMPETISI YANG AKTIF ---
+let activeCompetitionType = null; // Tambahkan variabel global ini
+
 // --- FUNGSI AKTIVASI TAB (PREVIEW CARD) ---
-// ... (Kode fungsi activateTab tidak berubah) ...
 function activateTab(type) {
     const academicButton = document.getElementById('tab-academic');
     const nonAcademicButton = document.getElementById('tab-non-academic');
@@ -60,61 +62,111 @@ function activateTab(type) {
 
 // --- FUNGSI TAMPILKAN DETAIL LOMBA UTAMA ---
 function showCompetitionDetails(type) {
-    const lktiDetails = document.getElementById('lkti-details');
-    const mlDetails = document.getElementById('ml-details');
-    const detailsWrapper = document.getElementById('lomba-details-wrapper');
     
-    // 1. Hide all main content blocks
-    if (lktiDetails) lktiDetails.classList.add('hidden');
-    if (mlDetails) mlDetails.classList.add('hidden');
+    // KONDISI BARU: JIKA KOMPETISI YANG SAMA DITEKAN LAGI, HANYA SCROLL, JANGAN RESET AOS
+    if (type === activeCompetitionType) {
+        const detailsWrapper = document.getElementById('lomba-details-wrapper');
+        // Scroll smoothly to the details section (only scroll, no content/AOS changes)
+        if (detailsWrapper) {
+            const offset = detailsWrapper.offsetTop - 100; 
+            window.scrollTo({
+                top: offset, 
+                behavior: 'smooth'
+            });
+        }
+        return; // Hentikan eksekusi fungsi di sini
+    }
+    
+    // ID diubah di kompetisi.blade.php menjadi *-content
+    const lktiDetails = document.getElementById('lkti-details-content');
+    const codingwarDetails = document.getElementById('codingwar-details-content'); 
+    const mlDetails = document.getElementById('ml-details-content');
+    const detailsWrapper = document.getElementById('lomba-details-wrapper');
 
-    // 2. Show selected content block
+    const allDetails = [lktiDetails, codingwarDetails, mlDetails].filter(el => el != null);
+    
+    // 1. Reset AOS state for ALL detail content blocks before showing the new one
+    // Ini memastikan AOS akan mentrigger animasi lagi saat refreshHard dipanggil,
+    // (Hanya jika berpindah dari kompetisi yang berbeda)
+    allDetails.forEach(detail => {
+        // Hapus class AOS untuk mereset status animasi dari SEMUA elemen ber-data-aos
+        const aosElements = detail.querySelectorAll('[data-aos]');
+        aosElements.forEach(el => {
+            el.classList.remove('aos-init', 'aos-animate');
+        });
+    });
+
+    // 2. Hide all main content blocks
+    allDetails.forEach(detail => {
+        detail.classList.add('hidden');
+    });
+
+    // 3. Show selected content block
+    let activeDetail;
     if (type === 'lkti' && lktiDetails) {
         lktiDetails.classList.remove('hidden');
+        activeDetail = lktiDetails;
+    } else if (type === 'codingwar' && codingwarDetails) {
+        codingwarDetails.classList.remove('hidden');
+        activeDetail = codingwarDetails;
     } else if (type === 'ml' && mlDetails) {
         mlDetails.classList.remove('hidden');
+        activeDetail = mlDetails;
     }
 
-    // START FIX: Tambahkan refresh AOS untuk memaksa perhitungan ulang posisi elemen
-    // Ini memperbaiki masalah di mana elemen di bagian bawah (seperti Contact Us) 
-    // tidak terdeteksi oleh AOS setelah konten yang panjang (LKTI/ML) disembunyikan/ditampilkan.
+    // 4. Force AOS to re-evaluate after showing the content
+    // Dipanggil setelah semua elemen ter-reset dan detail konten telah ditampilkan.
     setTimeout(() => { 
-        AOS.refreshHard(); 
-    }, 100);
-    // END FIX
+        if (typeof AOS !== 'undefined') {
+            AOS.refreshHard(); 
+        }
+    }, 50);
 
-    // 3. Scroll smoothly to the details section
+    // 5. Scroll smoothly to the details section
     if (detailsWrapper) {
-        // Menggunakan window.scrollTo jika elemen terlalu tinggi
-        const offset = detailsWrapper.offsetTop - 100; // Offset 100px dari atas agar tidak tertutup nav
+        const offset = detailsWrapper.offsetTop - 100; 
         window.scrollTo({
             top: offset, 
             behavior: 'smooth'
         });
     }
+
+    // 6. PERBARUI VARIABEL AKTIF
+    activeCompetitionType = type;
 }
 
 
 // --- INISIALISASI UTAMA ---
-// ... (Kode DOMContentLoaded tidak berubah) ...
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
         duration: 1000,
         once: true,
     });
+    
+    // Set activeCompetitionType menjadi null di awal
+    activeCompetitionType = null; // PENTING: Pastikan ini disetel
 
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenu) {
-        // Ini MENGATASI masalah menu yang sudah terbuka di halaman Kompetisi.
-        // Memastikan ia tertutup (max-height: 0) di awal.
         mobileMenu.classList.remove('menu-open'); 
     }
 
-    // Sembunyikan semua detail di awal (kecuali default LKTI)
-    const lktiDetails = document.getElementById('lkti-details');
-    const mlDetails = document.getElementById('ml-details');
-    if (lktiDetails) lktiDetails.classList.remove('hidden'); 
-    if (mlDetails) mlDetails.classList.add('hidden');
+    // Sembunyikan semua detail di awal dan mereset AOS
+    const lktiDetails = document.getElementById('lkti-details-content');
+    const codingwarDetails = document.getElementById('codingwar-details-content');
+    const mlDetails = document.getElementById('ml-details-content');
+    
+    // Menerapkan initial reset untuk memastikan animasi tampil saat pertama kali tombol ditekan
+    const allDetailsInitial = [lktiDetails, codingwarDetails, mlDetails].filter(el => el != null);
+    allDetailsInitial.forEach(detail => {
+        detail.classList.add('hidden'); 
+        
+        // Reset AOS state for initial load too
+        const aosElements = detail.querySelectorAll('[data-aos]');
+        aosElements.forEach(el => {
+            el.classList.remove('aos-init', 'aos-animate');
+        });
+    });
 
     // Atur state awal kartu detail
     const academicDetail = document.getElementById('academic-detail-tab');
@@ -136,30 +188,25 @@ document.addEventListener('DOMContentLoaded', function() {
         nonAcademicButton.addEventListener('click', () => activateTab('non-academic'));
         
         // Hubungkan event listener ke tombol "Lihat Ketentuan & Syarat" di dalam card
-        const showLktiBtn = document.getElementById('show-lkti-details');
-        const showMlBtn = document.getElementById('show-ml-details');
+        const showDetailButtons = document.querySelectorAll('.show-details-btn'); 
 
-        if (showLktiBtn) {
-            showLktiBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showCompetitionDetails('lkti');
-            });
-        }
-        
-        if (showMlBtn) {
-            showMlBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showCompetitionDetails('ml');
+        if (showDetailButtons.length > 0) { 
+            showDetailButtons.forEach(button => { 
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = button.dataset.target; 
+                    showCompetitionDetails(target);
+                });
             });
         }
     }
 
     // --- START: Logika Modal QR Code (Dinamis) ---
-    // ... (Kode Logika Modal QR Code tidak berubah) ...
     const shareModal = document.getElementById('share-modal');
     // Ambil semua tombol share
     const openModalBtnLKTI = document.getElementById('open-share-modal-lkti');
     const openModalBtnML = document.getElementById('open-share-modal-ml');
+    const openModalBtnCodingWar = document.getElementById('open-share-modal-codingwar'); 
     
     const closeModalBtn = document.getElementById('close-share-modal');
     const copyLinkBtn = document.getElementById('copy-link-btn');
@@ -167,24 +214,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ambil elemen dinamis di modal
     const modalCompNameEl = document.getElementById('modal-comp-name');
     const modalDescCompNameEl = document.getElementById('modal-desc-comp-name');
-    const modalQrImageEl = document.getElementById('modal-qr-image'); // <-- Ambil elemen gambar
+    const modalQrImageEl = document.getElementById('modal-qr-image');
 
     // Fungsi untuk setup dan membuka modal
     function setupModal(button) {
-        // Cek semua elemen penting, termasuk elemen gambar
         if (!shareModal || !copyLinkBtn || !modalCompNameEl || !modalDescCompNameEl || !modalQrImageEl) return; 
 
         const link = button.dataset.link;
         const competitionName = button.dataset.competition;
-        const qrSrc = button.dataset.qrSrc; // <-- Ambil sumber QR dari tombol
+        const qrSrc = button.dataset.qrSrc; 
         
         // 1. Update Modal Content
         copyLinkBtn.dataset.link = link;
         modalCompNameEl.textContent = competitionName;
         // Penyesuaian teks deskripsi
-        modalDescCompNameEl.textContent = competitionName === 'LKTI' ? 'Lomba Karya Tulis Ilmiah' : competitionName + ' Championship';
+        modalDescCompNameEl.textContent = competitionName === 'LKTI' ? 'Lomba Karya Tulis Ilmiah' : (competitionName === 'Coding War' ? 'Kompetisi Pemrograman Coding War' : competitionName + ' Championship');
         
-        modalQrImageEl.src = qrSrc; // <-- SET SUMBER GAMBAR QR
+        modalQrImageEl.src = qrSrc; 
 
         // 2. Buka Modal
         shareModal.classList.remove('hidden', 'opacity-0');
@@ -193,15 +239,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     if (closeModalBtn && copyLinkBtn) {
-        // Attach listener for LKTI button
+        // Attach listener for all share buttons
         if (openModalBtnLKTI) {
             openModalBtnLKTI.addEventListener('click', () => setupModal(openModalBtnLKTI));
         }
-
-        // Attach listener for MLBB button
         if (openModalBtnML) {
             openModalBtnML.addEventListener('click', () => setupModal(openModalBtnML));
         }
+        if (openModalBtnCodingWar) {
+            openModalBtnCodingWar.addEventListener('click', () => setupModal(openModalBtnCodingWar));
+        }
+
 
         // Tutup Modal
         closeModalBtn.addEventListener('click', () => {
